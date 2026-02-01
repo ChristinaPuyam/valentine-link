@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Angry Mode 😠</title>
+
+<style>
+body {
+  background: black;
+  color: #33ff33;
+  font-family: monospace;
+  padding: 20px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px;
+  width: 100%;
+  font-size: 16px;
+  background: #222;
+  color: #33ff33;
+  border: 1px solid #33ff33;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<p>> SYSTEM MESSAGE</p>
+<p>> Valentine forgiveness protocol initiated...</p>
+<p>> Condition detected: NOT INVITED</p>
+<br>
+<p>> Choose your next move:</p>
+
+<button onclick="flowers()">🌸 Bring Flowers</button>
+<button onclick="noFlowers()">❌ Do Nothing</button>
+
+<script>
+function flowers() {
+  window.location.href = "forgive.html";
+}
+
+function noFlowers() {
+  window.location.href = "no-forgive.html";
+}
+</script>
+
+</body>
+</html>

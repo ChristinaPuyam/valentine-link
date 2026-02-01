@@ -8,65 +8,62 @@
 body {
   margin: 0;
   height: 100vh;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont;
-  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* CARD */
 .card {
   position: relative;
-  z-index: 10;
+  z-index: 2;
   background: white;
-  padding: 30px;
+  width: 320px;
+  padding: 28px;
   border-radius: 18px;
   text-align: center;
-  max-width: 320px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
 button {
-  margin-top: 20px;
-  padding: 12px 20px;
+  margin-top: 14px;
+  padding: 12px;
+  width: 100%;
   border: none;
   border-radius: 12px;
-  background: #e63946;
-  color: white;
   font-size: 16px;
   cursor: pointer;
 }
 
-/* HEARTS */
-.heart {
-  position: absolute;
-  bottom: -20px;
-  font-size: 14px;
-  animation: floatUp 6s linear forwards;
-  opacity: 0.7;
-}
-
-@keyframes floatUp {
-  to {
-    transform: translateY(-110vh);
-    opacity: 0;
-  }
-}
-
-/* ANGRY MODE */
-body.angry {
-  background: linear-gradient(135deg, #232526, #414345);
-}
-
-body.angry .card {
-  background: #1c1c1c;
+.good {
+  background: #e63946;
   color: white;
 }
 
-body.angry button {
-  background: #ff6b6b;
+.angry {
+  background: #333;
+  color: white;
+}
+
+/* Flying hearts */
+.heart {
+  position: absolute;
+  color: rgba(255, 0, 90, 0.7);
+  font-size: 18px;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 </style>
 </head>
@@ -74,47 +71,33 @@ body.angry button {
 <body>
 
 <div class="card">
-  <h2 id="title">Happy Valentine’s ❤️</h2>
-  <p id="msg">You still didn’t invite me 🙂</p>
+  <h2>Happy Valentine’s 💖</h2>
+  <p>You still didn’t invite me 😌</p>
 
-  <button onclick="goNext()">Tap here →</button>
-  <br>
-  <button onclick="toggleAngry()">😠 Angry Mode</button>
+  <button class="good" onclick="goNext()">Be Sweet →</button>
+  <button class="angry" onclick="goAngry()">Angry Mode 😠</button>
 </div>
 
 <script>
-/* NAVIGATION */
 function goNext() {
   window.location.href = "cr7.html";
 }
 
-/* HEART SPAWNER */
-function createHeart() {
+function goAngry() {
+  window.location.href = "angry.html";
+}
+
+// create flying hearts
+setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
   heart.innerText = "❤️";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
   document.body.appendChild(heart);
 
-  setTimeout(() => heart.remove(), 7000);
-}
-
-setInterval(createHeart, 400);
-
-/* ANGRY MODE */
-let angry = false;
-function toggleAngry() {
-  angry = !angry;
-  document.body.classList.toggle("angry");
-
-  document.getElementById("title").innerText =
-    angry ? "Really?" : "Happy Valentine’s ❤️";
-
-  document.getElementById("msg").innerText =
-    angry ? "Even Cristiano Ronaldo wouldn’t do this 😤"
-          : "You still didn’t invite me 🙂";
-}
+  setTimeout(() => heart.remove(), 6000);
+}, 300);
 </script>
 
 </body>
